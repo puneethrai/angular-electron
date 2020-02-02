@@ -9,22 +9,15 @@ import { Jira } from '../shared/services/jira.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  username = new FormControl('', Validators.compose([
-    Validators.required
-  ]));
+  public loginForm: FormGroup;
 
-  password = new FormControl('', Validators.compose([
-    Validators.required
-  ]));
-  hostName = new FormControl('', Validators.compose([
-    Validators.required
-  ]));
   constructor(private formBuilder: FormBuilder,
-    private jira: Jira) { }
+    private jira: Jira) {
+    this.buildLoginForm();
+  }
 
   ngOnInit() {
-    this.buildLoginForm();
+
   }
 
   private buildLoginForm() {
@@ -56,19 +49,20 @@ export class LoginComponent implements OnInit {
     ]
   };
 
-  async onSubmitLoginForm(control: AbstractControl) {
+  async onSubmitLoginForm() {
 
     try {
       if (this.loginForm.valid) {
-        const name = control.get('username').value;
-        const password = control.get('password').value;
-        const hostName = control.get('hostName').value;
+
+        const name = this.loginForm.get('username');
+        const password = this.loginForm.get('password');
+        const hostname = this.loginForm.get('hostname');
 
         await this.jira.onLogin({
           protocol: 'https',
-          host: hostName,
-          username: name,
-          password: password,
+          host: hostname.value,
+          username: name.value,
+          password: password.value,
           strictSSL: true,
           apiVersion: 'latest',
           base: 'jira'

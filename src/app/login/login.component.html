@@ -1,9 +1,13 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm(loginForm, $event)">
-    <mat-card class="my-card">
+    <input id="username" formControlName="username" autocomplete="off" matInput placeholder="Username">
+    <input id="password" formControlName="password" autocomplete="off" type="password" matInput placeholder="Password">
+    <input id="hostName" formControlName="hostName" autocomplete="off" type="hostName" matInput placeholder="HostName">
+    <button type="submit" mat-raised-button color="accent" [disabled]="!loginForm.valid">Login</button>
+    <!--mat-card class="my-card">
         <mat-card-content>
 
             <mat-form-field class="demo-full-width">
-                <input formControlName="username" autocomplete="off" matInput placeholder="Username">
+                <input id="username" formControlName="username" autocomplete="off" matInput placeholder="Username">
             </mat-form-field>
             <mat-error *ngFor="let validation of validationMessages.username">
                 <mat-error class="error-message" *ngIf="loginForm.get('username').hasError(validation.type) && (loginForm.get('username').dirty || loginForm.get('username').touched)">
@@ -11,7 +15,7 @@
             </mat-error>
 
             <mat-form-field class="demo-full-width">
-                <input formControlName="password" autocomplete="off" type="password" matInput placeholder="Password">
+                <input id="password" formControlName="password" autocomplete="off" type="password" matInput placeholder="Password">
             </mat-form-field>
             <mat-error *ngFor="let validation of validationMessages.password">
                 <mat-error class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
@@ -19,7 +23,7 @@
             </mat-error>
 
             <mat-form-field class="demo-full-width">
-                <input formControlName="hostName" autocomplete="off" type="hostName" matInput placeholder="HostName">
+                <input id="hostName" formControlName="hostName" autocomplete="off" type="hostName" matInput placeholder="HostName">
             </mat-form-field>
             <mat-error *ngFor="let validation of validationMessages.password">
                 <mat-error class="error-message" *ngIf="loginForm.get('hostName').hasError(validation.type) && (loginForm.get('hostName').dirty || loginForm.get('hostName').touched)">
@@ -29,5 +33,5 @@
         <mat-card-actions>
             <button type="submit" mat-raised-button color="accent" [disabled]="!loginForm.valid">Login</button>
         </mat-card-actions>
-    </mat-card>
+    </mat-card-->
 </form>

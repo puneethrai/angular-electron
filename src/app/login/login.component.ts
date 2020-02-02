@@ -10,6 +10,16 @@ import { Jira } from '../shared/services/jira.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  username = new FormControl('', Validators.compose([
+    Validators.required
+  ]));
+
+  password = new FormControl('', Validators.compose([
+    Validators.required
+  ]));
+  hostName = new FormControl('', Validators.compose([
+    Validators.required
+  ]));
   constructor(private formBuilder: FormBuilder,
     private jira: Jira) { }
 
@@ -25,11 +35,26 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      hostName: new FormControl('', Validators.compose([
+      hostname: new FormControl('', Validators.compose([
         Validators.required
       ])),
     });
   }
+
+  validationMessages = {
+    username: [
+      { type: 'required', message: 'Username is required' },
+      { type: 'validUsername', message: 'username is invalid' }
+    ],
+    password: [
+      { type: 'required', message: 'Password is required' },
+      { type: 'password', message: 'password is invalid' }
+    ],
+    hostname: [
+      { type: 'required', message: 'HostName is required' },
+      { type: 'hostname', message: 'hostName is invalid' }
+    ]
+  };
 
   async onSubmitLoginForm(control: AbstractControl) {
 
@@ -41,9 +66,9 @@ export class LoginComponent implements OnInit {
 
         await this.jira.onLogin({
           protocol: 'https',
-          host: 'hostName',
-          username: 'name',
-          password: 'password',
+          host: hostName,
+          username: name,
+          password: password,
           strictSSL: true,
           apiVersion: 'latest',
           base: 'jira'
@@ -54,8 +79,8 @@ export class LoginComponent implements OnInit {
     }
     catch (exception) {
       console.error(exception);
-      const message = JSON.parse(exception.error);
-      alert(message.message);
+      //const message = JSON.parse(exception.error);
+      //alert(message.message);
     }
 
   }

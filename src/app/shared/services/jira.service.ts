@@ -23,7 +23,7 @@ export class Jira {
    */
   async onLogin(option: JiraApi.JiraApiOptions) {
     let jira = new JiraApi(option);
-    let response = await this.jira.getAllBoards();
+    let response = await jira.getAllBoards();
     assert.equal(typeof {}, typeof response, "Unable to login");
     this.jira = jira;
   }

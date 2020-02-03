@@ -16,7 +16,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HomeModule } from './home/home.module';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import {
   MatFormFieldModule, MatInputModule, MatIconModule, MatBadgeModule,
   MatCardModule, MatButtonModule, MatListModule, MatGridTile, MatTable, MatHeaderRow, MatRow, MatHeaderRowDef, MatProgressSpinner, MatSpinner, MatProgressBarModule, MatProgressSpinnerModule
